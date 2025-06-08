@@ -1,1 +1,1 @@
-# make-it-rain
+Made for the KTBYTE Hackathon
