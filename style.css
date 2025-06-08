@@ -1,10 +1,22 @@
-/* --- Color Palette & Font --- */
+/* =================================================================================
+// ||                        MAKE IT RAIN! - STYLESHEET                           ||
+// =================================================================================
+// || This file contains all the CSS styling for the game, giving it a unique, ||
+// || playful, and consistent look and feel.                                   ||
+// ================================================================================= */
+
+
+/* =================================================================================
+// ||                             FONTS & COLOR PALETTE                           ||
+// ================================================================================= */
+
+/* --- Defines the core color variables used throughout the application --- */
 :root {
     --bittersweet: #f05d5e;
     --caribbean-current: #0f7173;
     --antiflash-white: #e7ecef;
     --raisin-black: #272932;
-    --raisin-black-light: #3a3d4a; 
+    --raisin-black-light: #3a3d4a;
     --sun-glow: #ffc107;
     --text-dark: #272932;
 
@@ -18,7 +30,9 @@
     --bs-danger: #e76f51;
 }
 
-body, * {
+/* --- Sets the primary font and disables text selection for a cleaner feel --- */
+body,
+* {
     font-family: 'Fredoka One', cursive;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -26,25 +40,45 @@ body, * {
     user-select: none;
 }
 
+/* --- Basic body styling --- */
 body {
     background-color: var(--bs-body-bg);
     color: var(--bs-body-color);
     letter-spacing: 0.5px;
 }
 
-h1, h2, h3, h4, h5, h6, .fw-bold {
+/* --- Ensures all text elements use the custom font --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.fw-bold {
     font-family: 'Fredoka One', cursive;
 }
 
 #game-title {
     color: var(--antiflash-white);
 }
-p, span, li, div, button, label, small, strong {
+
+p,
+span,
+li,
+div,
+button,
+label,
+small,
+strong {
     font-family: 'Fredoka One', cursive;
 }
 
 
-/* --- Menu Screen Styling --- */
+/* =================================================================================
+// ||                             MENU SCREEN STYLES                              ||
+// ================================================================================= */
+
+/* --- Styles the main container box on the menu screen --- */
 #menu-screen .menu-box {
     background-color: var(--raisin-black-light);
     border: 4px solid var(--antiflash-white);
@@ -54,6 +88,7 @@ p, span, li, div, button, label, small, strong {
     max-width: 700px;
 }
 
+/* --- Styling for the main and secondary titles --- */
 #menu-screen h1 {
     color: var(--bittersweet);
     text-shadow: 3px 3px 0 var(--raisin-black);
@@ -63,6 +98,7 @@ p, span, li, div, button, label, small, strong {
     color: var(--antiflash-white);
 }
 
+/* --- Styling for the clickable tier selection cards --- */
 .tier-card {
     background-color: var(--raisin-black);
     border: 3px solid var(--antiflash-white);
@@ -83,29 +119,43 @@ p, span, li, div, button, label, small, strong {
     box-shadow: 10px 10px 0px var(--bittersweet);
 }
 
-/* NEW: Style to prevent clicks during animation */
+/* --- Prevents clicking on tier cards while collapse animation is running --- */
 .tier-card.animating {
     pointer-events: none;
     opacity: 0.6;
 }
 
-.tier-text-high { color: var(--caribbean-current); }
-.tier-text-mid { color: var(--sun-glow); }
-.tier-text-low { color: var(--bittersweet); }
+/* --- Tier-specific text colors --- */
+.tier-text-high {
+    color: var(--caribbean-current);
+}
+
+.tier-text-mid {
+    color: var(--sun-glow);
+}
+
+.tier-text-low {
+    color: var(--bittersweet);
+}
 
 
-/* --- Game Screen Layout Styling --- */
+/* =================================================================================
+// ||                             GAME SCREEN LAYOUT                              ||
+// ================================================================================= */
+
+/* --- Constrains the main game content width for better readability --- */
 #game-screen {
     max-width: 1200px;
     margin: 0 auto;
 }
 
+/* --- Styling for the top status bar displaying key metrics --- */
 .status-bar {
     background-color: var(--raisin-black-light);
     border: 3px solid var(--antiflash-white);
     border-radius: 1.5rem !important;
-    flex-wrap: wrap; 
-    gap: 1.5rem; 
+    flex-wrap: wrap;
+    gap: 1.5rem;
     padding: 1rem 1.5rem !important;
     box-shadow: 0 5px 0 var(--antiflash-white);
     color: var(--antiflash-white);
@@ -115,6 +165,7 @@ p, span, li, div, button, label, small, strong {
     color: var(--text-dark) !important;
 }
 
+/* --- Styling for the happiness progress bar --- */
 #happiness-bar {
     background-color: var(--caribbean-current);
     color: var(--antiflash-white);
@@ -127,19 +178,19 @@ p, span, li, div, button, label, small, strong {
 .progress {
     height: 1.75rem;
     border-radius: 0.75rem;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     border: 3px solid var(--antiflash-white);
     padding: 2px;
 }
 
-
+/* --- Core styling for the main content cards with a playful tilt --- */
 .game-card {
     background-color: var(--raisin-black-light);
     border: 4px solid var(--antiflash-white);
     border-radius: 1.5rem;
     box-shadow: 8px 8px 0px var(--bittersweet);
-    transition: all 0.2s cubic-bezier(.25,.8,.25,1);
-    overflow: hidden; 
+    transition: all 0.2s cubic-bezier(.25, .8, .25, 1);
+    overflow: hidden;
     transform: rotate(-1deg);
 }
 
@@ -157,6 +208,7 @@ p, span, li, div, button, label, small, strong {
     text-align: center;
 }
 
+/* --- Styling for list items inside cards --- */
 .list-group-item {
     background-color: transparent;
     border-color: rgba(231, 236, 239, 0.2) !important;
@@ -169,11 +221,7 @@ p, span, li, div, button, label, small, strong {
     font-weight: bold;
 }
 
-.quest-completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
+/* --- Styling for the "Learn More" info icons --- */
 .learn-more-icon {
     cursor: pointer;
     color: var(--sun-glow);
@@ -187,17 +235,24 @@ p, span, li, div, button, label, small, strong {
 }
 
 
-/* --- Input & Button Styling --- */
+/* =================================================================================
+// ||                           INPUTS, BUTTONS & FORMS                           ||
+// ================================================================================= */
+
+/* --- Custom styling for range sliders --- */
 .form-range {
     --bs-primary: var(--caribbean-current);
 }
+
 .form-range:focus {
     box-shadow: 0 0 0 0.25rem rgba(15, 113, 115, 0.25);
 }
+
 .form-range::-webkit-slider-thumb {
     background-color: var(--bittersweet);
     border: 2px solid var(--antiflash-white);
 }
+
 .form-range::-moz-range-thumb {
     background-color: var(--bittersweet);
     border: 2px solid var(--antiflash-white);
@@ -207,7 +262,7 @@ p, span, li, div, button, label, small, strong {
     color: var(--bittersweet);
 }
 
-
+/* --- Custom button styling with a chunky, playful box-shadow effect --- */
 .btn {
     border-radius: 0.75rem;
     font-weight: 600;
@@ -216,7 +271,8 @@ p, span, li, div, button, label, small, strong {
     transition: all 0.1s ease-in-out !important;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover,
+.btn:focus {
     border-color: var(--raisin-black);
     transform: translateY(-3px) translateX(-3px);
     box-shadow: 7px 7px 0 var(--text-dark);
@@ -229,10 +285,12 @@ p, span, li, div, button, label, small, strong {
     border-color: var(--raisin-black) !important;
 }
 
+/* --- Button color variations --- */
 .btn-primary {
     background-color: var(--bittersweet);
     color: var(--antiflash-white);
 }
+
 .btn-primary:hover {
     background-color: #d84d4e;
 }
@@ -262,12 +320,15 @@ p, span, li, div, button, label, small, strong {
     border-width: 3px;
     box-shadow: 4px 4px 0 var(--sun-glow);
 }
-.btn-outline-info:hover, .btn-outline-info:focus {
+
+.btn-outline-info:hover,
+.btn-outline-info:focus {
     background-color: var(--sun-glow);
     color: var(--text-dark);
     box-shadow: 7px 7px 0 var(--text-dark);
 }
 
+/* --- Special button for viewing stock charts --- */
 .btn-chart-view {
     background-color: transparent;
     border: 2px solid var(--sun-glow);
@@ -276,59 +337,33 @@ p, span, li, div, button, label, small, strong {
     font-size: 0.8rem;
     box-shadow: none;
 }
+
 .btn-chart-view:hover {
     background-color: var(--sun-glow);
     color: var(--text-dark);
     box-shadow: none;
     transform: none;
 }
+
 .btn-chart-view:active {
     transform: translateY(1px) !important;
     box-shadow: none !important;
 }
 
-
-/* Hide arrows from number inputs */
+/* --- Hides the default arrows on number input fields --- */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
+
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
-/* Modal Styling */
-.modal-content {
-    background-color: var(--raisin-black-light);
-    border: 4px solid var(--antiflash-white);
-    border-radius: 1.5rem;
-    box-shadow: 10px 10px 0px var(--bittersweet);
-}
-
-.modal-header {
-    border-bottom: 4px solid var(--antiflash-white);
-}
-.modal-footer {
-    border-top: 4px solid var(--antiflash-white);
-}
-.btn-close-white {
-    filter: invert(1) grayscale(100%) brightness(200%);
-}
-#education-modal-body .list-group-item {
-    background-color: var(--raisin-black);
-    border: 3px solid var(--antiflash-white);
-    border-radius: 0.75rem;
-    margin-bottom: 0.5rem;
-    transition: background-color 0.2s ease-in-out;
-    color: var(--antiflash-white);
-}
-#education-modal-body .list-group-item:hover {
-    background-color: var(--raisin-black-light);
-    color: var(--antiflash-white);
-}
-
-.form-control, .form-select {
+/* --- General styling for form controls and selects --- */
+.form-control,
+.form-select {
     border-radius: 0.75rem;
     border: 3px solid var(--antiflash-white);
     background-color: var(--raisin-black);
@@ -339,22 +374,68 @@ input[type=number] {
     user-select: auto;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: var(--bittersweet);
     box-shadow: none;
     background-color: var(--raisin-black);
     color: var(--antiflash-white);
 }
 
-/* Stock price change colors */
+/* =================================================================================
+// ||                                MODAL STYLING                                ||
+// ================================================================================= */
+
+/* --- Custom styling for all modals to match the game's theme --- */
+.modal-content {
+    background-color: var(--raisin-black-light);
+    border: 4px solid var(--antiflash-white);
+    border-radius: 1.5rem;
+    box-shadow: 10px 10px 0px var(--bittersweet);
+}
+
+.modal-header {
+    border-bottom: 4px solid var(--antiflash-white);
+}
+
+.modal-footer {
+    border-top: 4px solid var(--antiflash-white);
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* --- Specific styling for list items within the education modal --- */
+#education-modal-body .list-group-item {
+    background-color: var(--raisin-black);
+    border: 3px solid var(--antiflash-white);
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
+    color: var(--antiflash-white);
+}
+
+#education-modal-body .list-group-item:hover {
+    background-color: var(--raisin-black-light);
+    color: var(--antiflash-white);
+}
+
+
+/* =================================================================================
+// ||                              UTILITY STYLES                                 ||
+// ================================================================================= */
+
+/* --- Colors for displaying stock price changes --- */
 .price-up {
     color: var(--bs-success);
 }
+
 .price-down {
     color: var(--bs-danger);
 }
 
-/* Style for pattern canvas in lesson modal */
+/* --- Styling for the mini-chart canvases in the lesson modal --- */
 .pattern-canvas {
     display: block;
     width: 100%;
@@ -366,11 +447,13 @@ input[type=number] {
     background-color: var(--raisin-black);
 }
 
+/* --- Layout styling for content within the lesson modal --- */
 #lesson-modal-body .row {
     padding-bottom: 1rem;
     border-bottom: 2px dashed rgba(231, 236, 239, 0.2);
     margin-bottom: 1rem;
 }
+
 #lesson-modal-body .row:last-of-type {
     border-bottom: none;
 }
