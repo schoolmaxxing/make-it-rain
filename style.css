@@ -16,7 +16,7 @@
     --caribbean-current: #0f7173;
     --antiflash-white: #e7ecef;
     --raisin-black: #272932;
-    --raisin-black-light: #3a3d4a;
+    --raisin-black-light: #3a3d4a; 
     --sun-glow: #ffc107;
     --text-dark: #272932;
 
@@ -31,8 +31,7 @@
 }
 
 /* --- Sets the primary font and disables text selection for a cleaner feel --- */
-body,
-* {
+body, * {
     font-family: 'Fredoka One', cursive;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -48,28 +47,14 @@ body {
 }
 
 /* --- Ensures all text elements use the custom font --- */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.fw-bold {
+h1, h2, h3, h4, h5, h6, .fw-bold {
     font-family: 'Fredoka One', cursive;
 }
 
 #game-title {
     color: var(--antiflash-white);
 }
-
-p,
-span,
-li,
-div,
-button,
-label,
-small,
-strong {
+p, span, li, div, button, label, small, strong {
     font-family: 'Fredoka One', cursive;
 }
 
@@ -126,17 +111,9 @@ strong {
 }
 
 /* --- Tier-specific text colors --- */
-.tier-text-high {
-    color: var(--caribbean-current);
-}
-
-.tier-text-mid {
-    color: var(--sun-glow);
-}
-
-.tier-text-low {
-    color: var(--bittersweet);
-}
+.tier-text-high { color: var(--caribbean-current); }
+.tier-text-mid { color: var(--sun-glow); }
+.tier-text-low { color: var(--bittersweet); }
 
 
 /* =================================================================================
@@ -154,8 +131,8 @@ strong {
     background-color: var(--raisin-black-light);
     border: 3px solid var(--antiflash-white);
     border-radius: 1.5rem !important;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    flex-wrap: wrap; 
+    gap: 1.5rem; 
     padding: 1rem 1.5rem !important;
     box-shadow: 0 5px 0 var(--antiflash-white);
     color: var(--antiflash-white);
@@ -178,7 +155,7 @@ strong {
 .progress {
     height: 1.75rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0,0,0,0.4);
     border: 3px solid var(--antiflash-white);
     padding: 2px;
 }
@@ -189,8 +166,8 @@ strong {
     border: 4px solid var(--antiflash-white);
     border-radius: 1.5rem;
     box-shadow: 8px 8px 0px var(--bittersweet);
-    transition: all 0.2s cubic-bezier(.25, .8, .25, 1);
-    overflow: hidden;
+    transition: all 0.2s cubic-bezier(.25,.8,.25,1);
+    overflow: hidden; 
     transform: rotate(-1deg);
 }
 
@@ -243,16 +220,13 @@ strong {
 .form-range {
     --bs-primary: var(--caribbean-current);
 }
-
 .form-range:focus {
     box-shadow: 0 0 0 0.25rem rgba(15, 113, 115, 0.25);
 }
-
 .form-range::-webkit-slider-thumb {
     background-color: var(--bittersweet);
     border: 2px solid var(--antiflash-white);
 }
-
 .form-range::-moz-range-thumb {
     background-color: var(--bittersweet);
     border: 2px solid var(--antiflash-white);
@@ -271,8 +245,7 @@ strong {
     transition: all 0.1s ease-in-out !important;
 }
 
-.btn:hover,
-.btn:focus {
+.btn:hover, .btn:focus {
     border-color: var(--raisin-black);
     transform: translateY(-3px) translateX(-3px);
     box-shadow: 7px 7px 0 var(--text-dark);
@@ -290,7 +263,6 @@ strong {
     background-color: var(--bittersweet);
     color: var(--antiflash-white);
 }
-
 .btn-primary:hover {
     background-color: #d84d4e;
 }
@@ -320,9 +292,7 @@ strong {
     border-width: 3px;
     box-shadow: 4px 4px 0 var(--sun-glow);
 }
-
-.btn-outline-info:hover,
-.btn-outline-info:focus {
+.btn-outline-info:hover, .btn-outline-info:focus {
     background-color: var(--sun-glow);
     color: var(--text-dark);
     box-shadow: 7px 7px 0 var(--text-dark);
@@ -337,14 +307,12 @@ strong {
     font-size: 0.8rem;
     box-shadow: none;
 }
-
 .btn-chart-view:hover {
     background-color: var(--sun-glow);
     color: var(--text-dark);
     box-shadow: none;
     transform: none;
 }
-
 .btn-chart-view:active {
     transform: translateY(1px) !important;
     box-shadow: none !important;
@@ -353,17 +321,15 @@ strong {
 /* --- Hides the default arrows on number input fields --- */
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
-
 input[type=number] {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 /* --- General styling for form controls and selects --- */
-.form-control,
-.form-select {
+.form-control, .form-select {
     border-radius: 0.75rem;
     border: 3px solid var(--antiflash-white);
     background-color: var(--raisin-black);
@@ -374,8 +340,7 @@ input[type=number] {
     user-select: auto;
 }
 
-.form-control:focus,
-.form-select:focus {
+.form-control:focus, .form-select:focus {
     border-color: var(--bittersweet);
     box-shadow: none;
     background-color: var(--raisin-black);
@@ -397,11 +362,9 @@ input[type=number] {
 .modal-header {
     border-bottom: 4px solid var(--antiflash-white);
 }
-
 .modal-footer {
     border-top: 4px solid var(--antiflash-white);
 }
-
 .btn-close-white {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
@@ -415,7 +378,6 @@ input[type=number] {
     transition: background-color 0.2s ease-in-out;
     color: var(--antiflash-white);
 }
-
 #education-modal-body .list-group-item:hover {
     background-color: var(--raisin-black-light);
     color: var(--antiflash-white);
@@ -430,7 +392,6 @@ input[type=number] {
 .price-up {
     color: var(--bs-success);
 }
-
 .price-down {
     color: var(--bs-danger);
 }
@@ -453,7 +414,6 @@ input[type=number] {
     border-bottom: 2px dashed rgba(231, 236, 239, 0.2);
     margin-bottom: 1rem;
 }
-
 #lesson-modal-body .row:last-of-type {
     border-bottom: none;
 }
