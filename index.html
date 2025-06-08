@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make it Rain! (or Don't)</title>
+    <link rel="icon" type="image/x-icon" href="icon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="menu-screen" class="container vh-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="menu-box p-4 p-md-5 text-center">
+            <h1 class="display-1 fw-bold mb-2">Make it Rain!</h1>
+            <h2 class="h4 mb-4">(or Don't)</h2>
+            <p class="lead mb-4">Choose your starting path:</p>
+            
+            <div id="school-selection-accordion">
+                <div class="row g-3" id="tier-selection-cards">
+                    </div>
+
+                <div id="college-dropdowns">
+                    </div>
+            </div>
+
+            <button id="confirm-setup-btn" class="btn btn-primary btn-lg px-5 py-3 fw-bold mt-4" disabled>Begin Your Life</button>
+        </div>
+    </div>
+
+    <div id="game-screen" class="d-none">
+        <div class="container-fluid p-3 p-md-4">
+            <header class="text-center mb-4">
+                <h1 class="display-5 fw-bold" id="game-title">Make it Rain! (or Don't)</h1>
+                <p id="date-display">January 2025 (Age: 22)</p>
+            </header>
+    
+            <div class="status-bar d-flex justify-content-around align-items-center p-3 mb-4">
+                <span id="status-money"><strong>Money:</strong> $0</span>
+                <span id="status-income"><strong>Income:</strong> $0/mo <i class="fas fa-question-circle learn-more-icon" data-topic="income"></i></span>
+                <span id="status-debt"><strong>Debt:</strong> $0 <i class="fas fa-question-circle learn-more-icon" data-topic="debt"></i></span>
+                <span id="status-tax"><strong>Tax Rate:</strong> 20% <i class="fas fa-question-circle learn-more-icon" data-topic="taxes"></i></span>
+                 <div id="status-happiness" class="d-flex align-items-center">
+                    <span class="me-2"><strong>Happiness:</strong> <i class="fas fa-question-circle learn-more-icon" data-topic="happiness"></i></span>
+                    <div class="progress" style="width: 100px;" id="happiness-bar-container">
+                        <div id="happiness-bar" class="progress-bar" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
+                    </div>
+                </div>
+                 <span><strong>Economy:</strong> <span id="status-economy" class="badge rounded-pill bg-success">Normal</span> <i class="fas fa-question-circle learn-more-icon" data-topic="economy"></i></span>
+            </div>
+    
+            <div class="row g-4">
+                 <div class="col-lg-6 d-flex">
+                    <div class="card game-card flex-fill">
+                        <div class="card-header">Monthly Budget <i class="fas fa-question-circle learn-more-icon" data-topic="budgeting"></i></div>
+                        <div id="budget-card-body" class="card-body">
+                           <div id="budget-summary-container">
+                               <hr>
+                               <div class="d-flex justify-content-between">
+                                   <span>Total Budgeted:</span>
+                                   <strong id="summary-budgeted">$0</strong>
+                               </div>
+                               <div class="d-flex justify-content-between">
+                                   <span>Remaining to Budget:</span>
+                                   <strong id="summary-remaining">$0</strong>
+                               </div>
+                                <div class="d-flex justify-content-between text-success">
+                                   <span>Est. Net Flow: <i class="fas fa-question-circle learn-more-icon" data-topic="netflow"></i></span>
+                                   <strong id="summary-savings">$0</strong>
+                               </div>
+                           </div>
+                           <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
+                               <button id="auto-allocate-btn" class="btn btn-secondary" disabled>Auto-Allocate</button>
+                               <button id="simulate-month-btn" class="btn btn-primary" disabled>Simulate Month</button>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex">
+                    <div class="card game-card flex-fill">
+                        <div class="card-header">Financials Over Time <i class="fas fa-question-circle learn-more-icon" data-topic="netflow"></i></div>
+                        <div class="card-body">
+                            <canvas id="financial-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex">
+                    <div class="card game-card flex-fill">
+                        <div class="card-header">Current Quests</div>
+                        <div class="card-body">
+                            <ol class="list-group list-group-flush list-group-numbered" id="quest-list">
+                                </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex">
+                    <div class="card game-card flex-fill">
+                        <div class="card-header">Assets & Actions</div>
+                         <div class="card-body d-flex flex-column">
+                            <h5>Education <i class="fas fa-question-circle learn-more-icon" data-topic="education"></i></h5>
+                            <p class="mb-2">Current: <strong id="education-level">Undergraduate</strong></p>
+                            <button id="education-btn" class="btn btn-info w-100 mb-3" data-bs-toggle="modal" data-bs-target="#education-modal">Pursue Higher Education</button>
+                            <hr>
+                            <h5>Actions</h5>
+                            <div class="d-grid gap-2">
+                                <button id="shop-btn" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#shop-modal">Open Shop</button>                                
+                                <div class="d-flex align-items-center">
+                                    <button id="invest-btn" class="btn btn-success flex-grow-1" data-bs-toggle="modal" data-bs-target="#invest-modal">Manage Investments</button>
+                                    <i class="fas fa-question-circle learn-more-icon fs-4 ms-2" data-topic="investing"></i>
+                                </div>
+                            </div>
+                            <hr>
+                            <h5>Owned Assets</h5>
+                            <ul class="list-group list-group-flush" id="property-list">
+                                </ul>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="education-modal" tabindex="-1" aria-labelledby="educationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="educationModalLabel">Pursue Higher Education</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="education-modal-body">
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="shop-modal" tabindex="-1" aria-labelledby="shopModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="shopModalLabel">Shop</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="shop-modal-body">
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="invest-modal" tabindex="-1" aria-labelledby="investModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="investModalLabel">Investment Portfolio</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="invest-modal-body">
+              </div>
+        </div>
+      </div>
+    </div>
+
+     <div class="modal fade" id="stock-detail-modal" tabindex="-1" aria-labelledby="stockDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="stock-detail-modal-title">Stock History</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="stock-detail-modal-body">
+              <canvas id="stock-detail-chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="notification-modal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notification-modal-title">Notification</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="notification-modal-body">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="lesson-modal" tabindex="-1" aria-labelledby="lessonModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="lesson-modal-title">Lesson</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="lesson-modal-body">
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="game-over-modal" tabindex="-1" aria-labelledby="gameOverModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title" id="gameOverModalLabel">Game Over</h5>
+                </div>
+                <div class="modal-body" id="game-over-body">
+                    <p id="game-over-message">Your happiness fell too low!</p>
+                    <button class="btn btn-primary" onclick="window.location.reload()">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.min.js" integrity="sha512-wUYbRPLV5zs6IqvWd88HIqZU/b8TBx+I8LEioQ/UC0t5EMCLApqhIAnUg7EsAzdbhhdgW07TqYDdH3QEXRcPOQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
