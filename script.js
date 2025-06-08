@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         economy: {
             title: "Economic Cycles",
-            text: "The economy is versatile and changes according to different factors such as supply and demand, and different business operations. There are different economic cycles of an economy such as: expansion (growth), peak (highest point), contraction (decline), and trough (lowest point)."
+            text: "The economy is versatile and changes according to different factors such as supply and demand, and different business operations. There are different economic cycles of an economy such as: expansion (growth), peak (highest point), contraction (decline), and trough (lowest point). The different types of economy in this simulation are normal, meaning the economy is stable; recession, meaning there's a lack of spending which is dropping economic activity; inflation, meaning the average price of goods are raised."
         },
         budgeting: {
             title: "Budgeting",
