@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         economy: {
             title: "Economic Cycles",
-            text: "The economy is versatile and changes according to different factors such as supply and demand, and different business operations. There are different economic cycles of an economy such as: expansion (growth), peak (highest point), contraction (decline), and trough (lowest point)."
+            text: "The economy is versatile and changes according to different factors such as supply and demand, and different business operations. There are different economic cycles of an economy such as: expansion (growth), peak (highest point), contraction (decline), and trough (lowest point). The different types of economy in this simulation are normal, meaning the economy is stable; recession, meaning there's a lack of spending which is dropping economic activity; inflation, meaning the average price of goods are raised."
         },
         budgeting: {
             title: "Budgeting",
@@ -1413,15 +1413,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gameState.educationLevel = newLevel;
         gameState.happiness = 70;
 
-        if (newLevel === "Doctorate") {
-            const mastersQuest = gameState.quests.find(q => q.id === 22);
-            if (mastersQuest && !mastersQuest.isCompleted) {
-                mastersQuest.isCompleted = true;
-                queueNotification('Quest Complete!', `${mastersQuest.text}<br><br><strong>Reward:</strong> ${formatReward(mastersQuest.reward)}`);
-            }
-        }
-
-
         checkQuests();
         checkEndConditions();
         updateUI();
@@ -1480,10 +1471,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return baseCost;
     }
 
-    // --- Automatically allocates the budget based on the 50/30/20 rule ---
+    // --- Automatically allocates budget to needs, setting leisure to zero ---
     function autoAllocateBudget() {
         const needsTotal = gameState.income * 0.5;
-        const wantsTotal = gameState.income * 0.3;
 
         const tierMinimums = MINIMUM_SPENDING[gameState.tier];
         const sumOfMinimums = Object.values(tierMinimums).reduce((a, b) => a + b, 0);
@@ -1500,7 +1490,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const leisureSlider = document.getElementById('budget-leisure');
-        leisureSlider.value = Math.round(wantsTotal / 50) * 50;
+        leisureSlider.value = 0; // Set leisure spending to zero
         leisureSlider.dispatchEvent(new Event('input'));
     }
 
