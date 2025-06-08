@@ -1,1 +1,1 @@
-Made for the KTBYTE Hackathon
+Made for the KTBYTE 2025 Hackathon
